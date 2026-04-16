@@ -1,277 +1,111 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- * Career Path Design - Education Solutions 2026
- */
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Career Timeline</title>
 
-import React, { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { 
-  Search, Briefcase, GraduationCap, Send, 
-  CheckCircle2, TrendingUp, Heart, Users,
-  ChevronRight, Sparkles
-} from "lucide-react";
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-// --- TYPES ---
-interface Task {
-  id: string;
-  description: string;
-}
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
-interface TimelineStep {
-  grade: number;
-  title: string;
-  subtitle: string;
-  phase: string;
-  color: "blue" | "emerald" | "orange" | "red";
-  icon: ReactNode;
-  tasks: string[];
-}
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
 
-// --- DATA ---
-const TIMELINE_DATA: TimelineStep[] = [
-  {
-    grade: 9,
-    title: "Lớp 9: Khám phá bản thân",
-    subtitle: "Thấu hiểu bản thân là khởi đầu của sự khôn ngoan.",
-    phase: "Giai đoạn 1: Khám phá",
-    color: "blue",
-    icon: <Search className="w-6 h-6" />,
-    tasks: [
-      "Trắc nghiệm MBTI/Holland xác định tính cách.",
-      "Tham gia các Câu lạc bộ (CLB) ngoại khóa.",
-      "Định hướng môn học IGCSE/Pre-IB phù hợp."
-    ]
-  },
-  {
-    grade: 10,
-    title: "Lớp 10: Trải nghiệm thực tế",
-    subtitle: "Học đi đôi với hành thông qua thực tiễn.",
-    phase: "Giai đoạn 2: Trải nghiệm",
-    color: "emerald",
-    icon: <Briefcase className="w-6 h-6" />,
-    tasks: [
-      "Thực hiện Dự án cá nhân (Personal Project).",
-      "Job Shadowing: Quan sát thực tế doanh nghiệp.",
-      "Xây dựng Portfolio (Hồ sơ năng lực) sơ khởi."
-    ]
-  },
-  {
-    grade: 11,
-    title: "Lớp 11: Định hình chuyên sâu",
-    subtitle: "Xây dựng nền tảng học thuật vững chắc.",
-    phase: "Giai đoạn 3: Định hình",
-    color: "orange",
-    icon: <GraduationCap className="w-6 h-6" />,
-    tasks: [
-      "Luyện thi chứng chỉ quốc tế IELTS/SAT/ACT.",
-      "Tham gia Summer School tại các ĐH danh tiếng.",
-      "Khởi tạo bài luận cá nhân (Personal Statement)."
-    ]
-  },
-  {
-    grade: 12,
-    title: "Lớp 12: Chinh phục mục tiêu",
-    subtitle: "Sẵn sàng vươn mình ra thế giới.",
-    phase: "Giai đoạn 4: Về đích",
-    color: "red",
-    icon: <Send className="w-6 h-6" />,
-    tasks: [
-      "Hoàn thiện hồ sơ nộp vào ĐH mục tiêu.",
-      "Luyện phỏng vấn học bổng & luận phụ.",
-      "Trang bị kỹ năng sống độc lập bậc Đại học."
-    ]
-  }
-];
+<body class="bg-slate-50 text-slate-900">
 
-// --- COMPONENTS ---
+<!-- HERO -->
+<header class="relative overflow-hidden bg-blue-900 text-white py-24 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <span class="inline-block px-4 py-1.5 rounded-full bg-blue-800 text-sm mb-6">
+      🎓 Dành cho học sinh THPT
+    </span>
 
-const AdvisorCard = ({ icon, title, description }: { icon: ReactNode, title: string, description: string }) => (
-  <motion.div 
-    whileHover={{ y: -8, shadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-    className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center transition-all"
-  >
-    <div className="p-4 bg-sky-50 rounded-full text-sky-600 mb-6">
-      {icon}
+    <h1 class="text-4xl font-bold mb-4">
+      Lộ trình định hướng nghề nghiệp
+    </h1>
+
+    <p class="text-lg text-blue-200">
+      Từng bước khám phá – trải nghiệm – định hình – chinh phục
+    </p>
+  </div>
+</header>
+
+<!-- TIMELINE -->
+<section class="max-w-5xl mx-auto py-16 px-6 space-y-10">
+
+  <!-- LỚP 9 -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold text-blue-600">Lớp 9: Khám phá bản thân</h2>
+    <p class="text-gray-500 italic">Self-discovery is the beginning of wisdom.</p>
+    <ul class="list-disc ml-5 mt-4 space-y-2">
+      <li>Trắc nghiệm MBTI/Holland</li>
+      <li>Tham gia CLB</li>
+      <li>Định hướng môn học</li>
+    </ul>
+  </div>
+
+  <!-- LỚP 10 -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold text-green-600">Lớp 10: Trải nghiệm</h2>
+    <p class="text-gray-500 italic">Learning by doing</p>
+    <ul class="list-disc ml-5 mt-4 space-y-2">
+      <li>Dự án cá nhân</li>
+      <li>Job shadowing</li>
+      <li>Portfolio</li>
+    </ul>
+  </div>
+
+  <!-- LỚP 11 -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold text-orange-500">Lớp 11: Định hình</h2>
+    <p class="text-gray-500 italic">Academic foundation</p>
+    <ul class="list-disc ml-5 mt-4 space-y-2">
+      <li>IELTS / SAT</li>
+      <li>Summer school</li>
+      <li>Viết luận</li>
+    </ul>
+  </div>
+
+  <!-- LỚP 12 -->
+  <div class="bg-white p-6 rounded-xl shadow">
+    <h2 class="text-xl font-bold text-red-500">Lớp 12: Về đích</h2>
+    <p class="text-gray-500 italic">Reach the world</p>
+    <ul class="list-disc ml-5 mt-4 space-y-2">
+      <li>Nộp hồ sơ đại học</li>
+      <li>Phỏng vấn học bổng</li>
+      <li>Kỹ năng sống</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ADVISOR -->
+<section class="bg-white py-16">
+  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+
+    <div class="p-6 border rounded-xl text-center">
+      <h3 class="font-bold text-lg mb-2">Định hướng</h3>
+      <p class="text-gray-600">Hiểu bản thân & chọn đúng ngành</p>
     </div>
-    <h4 className="text-xl font-bold mb-3 text-slate-800">{title}</h4>
-    <p className="text-slate-600 leading-relaxed">{description}</p>
-  </motion.div>
-);
 
-const TimelineItem = ({ step, index }: { step: TimelineStep, index: number }) => {
-  const isEven = index % 2 === 0;
-  
-  const theme = {
-    blue: { border: "border-blue-500", text: "text-blue-600", bg: "bg-blue-50", dot: "bg-blue-600" },
-    emerald: { border: "border-emerald-500", text: "text-emerald-600", bg: "bg-emerald-50", dot: "bg-emerald-600" },
-    orange: { border: "border-orange-500", text: "text-orange-600", bg: "bg-orange-50", dot: "bg-orange-600" },
-    red: { border: "border-red-500", text: "text-red-600", bg: "bg-red-50", dot: "bg-red-600" }
-  }[step.color];
-
-  return (
-    <div className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-0 ${isEven ? "" : "md:flex-row-reverse"}`}>
-      {/* Content Box */}
-      <motion.div 
-        initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
-        className="w-full md:w-1/2 px-4 md:px-12"
-      >
-        <div className={`bg-white p-8 rounded-3xl shadow-sm border-l-4 ${theme.border} hover:shadow-lg transition-all`}>
-          <div className="flex items-center gap-4 mb-4">
-            <div className={`p-3 rounded-xl ${theme.bg} ${theme.text}`}>
-              {step.icon}
-            </div>
-            <div>
-              <span className="text-xs font-black uppercase tracking-widest opacity-50">{step.phase}</span>
-              <h3 className="text-2xl font-bold text-slate-900">{step.title}</h3>
-            </div>
-          </div>
-          
-          <p className="text-slate-500 italic mb-6 border-l-2 border-slate-100 pl-4">
-            "{step.subtitle}"
-          </p>
-          
-          <ul className="space-y-3">
-            {step.tasks.map((task, i) => (
-              <li key={i} className="flex items-start gap-3 text-slate-700 text-sm">
-                <CheckCircle2 className={`w-5 h-5 shrink-0 ${theme.text}`} />
-                <span>{task}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </motion.div>
-
-      {/* Center Marker */}
-      <div className="absolute left-1/2 -translate-x-1/2 z-10 hidden md:flex items-center justify-center">
-        <motion.div 
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          className={`w-12 h-12 rounded-full border-4 border-white shadow-xl ${theme.dot} flex items-center justify-center text-white font-bold text-lg`}
-        >
-          {step.grade}
-        </motion.div>
-      </div>
-
-      {/* Decorative Background Number */}
-      <div className="hidden md:block w-1/2 px-12">
-        <span className={`text-[10rem] font-black opacity-[0.03] select-none ${isEven ? "text-right block" : "text-left block"}`}>
-          {step.grade}
-        </span>
-      </div>
+    <div class="p-6 border rounded-xl text-center">
+      <h3 class="font-bold text-lg mb-2">Kỹ năng</h3>
+      <p class="text-gray-600">Phát triển kỹ năng mềm & học thuật</p>
     </div>
-  );
-};
 
-export default function CareerApp() {
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-sky-100">
-      {/* Hero */}
-      <header className="relative bg-[#0c4a6e] text-white py-32 px-6 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky-500/20 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px]" />
-        </div>
-        
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <motion.span 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sky-200 text-xs font-bold uppercase tracking-widest mb-8"
-          >
-            <Sparkles className="w-4 h-4" /> Hệ Song ngữ & Quốc tế
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-extrabold mb-8 leading-tight"
-          >
-            Thiết Kế Lộ Trình <br />
-            <span className="text-sky-400">Tương Lai</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-sky-100/80 max-w-2xl mx-auto font-light"
-          >
-            Hành trình từ Lớp 9 đến Lớp 12 được cá nhân hóa, chuẩn bị nền tảng vững chắc để bước vào những đại học hàng đầu thế giới.
-          </motion.p>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto py-24 px-6">
-        {/* Timeline */}
-        <section className="relative">
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 hidden md:block" />
-          <div className="space-y-32">
-            {TIMELINE_DATA.map((step, idx) => (
-              <TimelineItem key={step.grade} step={step} index={idx} />
-            ))}
-          </div>
-        </section>
-
-        {/* Advisor Section */}
-        <section className="mt-56">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl font-black text-slate-900 mb-6">Đồng Hành Cùng Cố Vấn</h2>
-            <p className="text-slate-600 text-lg">
-              Không chỉ là người hướng dẫn, chúng tôi là những cộng sự giúp học sinh khai phá tiềm năng tối đa.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <AdvisorCard 
-              icon={<TrendingUp className="w-8 h-8" />}
-              title="Xu Hướng Toàn Cầu"
-              description="Phân tích dữ liệu về các ngành nghề tương lai như AI, Công nghệ xanh và Tài chính số."
-            />
-            <AdvisorCard 
-              icon={<Heart className="w-8 h-8" />}
-              title="Điểm Tựa Tâm Lý"
-              description="Cân bằng áp lực học tập và giữ vững động lực trong suốt các kỳ thi chứng chỉ căng thẳng."
-            />
-            <AdvisorCard 
-              icon={<Users className="w-8 h-8" />}
-              title="Mạng Lưới Alumni"
-              description="Kết nối trực tiếp với các cựu học sinh đang thành công tại Harvard, Oxford hay NUS."
-            />
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="mt-56 bg-gradient-to-br from-sky-900 to-blue-900 rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Sẵn sàng viết nên câu chuyện của bạn?</h2>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-sky-400 text-white px-12 py-5 rounded-full font-black text-lg inline-flex items-center gap-3 shadow-lg hover:bg-sky-300 transition-colors"
-            >
-              Đăng ký tư vấn ngay
-              <ChevronRight className="w-6 h-6" />
-            </motion.button>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-500 py-16 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex items-center gap-3 text-white text-2xl font-black italic">
-            <div className="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center not-italic">
-              <GraduationCap className="w-6 h-6" />
-            </div>
-            CAREER PATH
-          </div>
-          <p className="text-sm">© 2026 Bản quyền thuộc về Career Path Design. Global Education Excellence.</p>
-        </div>
-      </footer>
+    <div class="p-6 border rounded-xl text-center">
+      <h3 class="font-bold text-lg mb-2">Cơ hội</h3>
+      <p class="text-gray-600">Tiếp cận học bổng & du học</p>
     </div>
-  );
-}
+
+  </div>
+</section>
+
+</body>
+</html>
