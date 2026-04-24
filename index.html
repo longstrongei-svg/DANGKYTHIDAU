@@ -1,111 +1,711 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Career Timeline</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>🥋 Đăng Ký Thi Đấu Vovinam</title>
+<style>
+/* ═══════════ RESET & BIẾN ═══════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+:root {
+  --pri:       #0d47a1;
+  --pri-light: #1565c0;
+  --pri-glow:  #42a5f5;
+  --accent:    #00bcd4;
+  --accent2:   #ff7043;
+  --success:   #2e7d32;
+  --error:     #c62828;
+  --warn:      #e65100;
+  --bg:        #e3f2fd;
+  --card:      #ffffff;
+  --row-odd:   #f0f7ff;
+  --row-even:  #ffffff;
+  --border:    #bbdefb;
+  --text:      #1a237e;
+  --muted:     #546e7a;
+  --shadow:    0 4px 20px rgba(13,71,161,0.12);
+  --radius:    14px;
+  --radius-sm: 8px;
+}
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+body {
+  font-family: "Segoe UI", "Be Vietnam Pro", Arial, sans-serif;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 40%, #b3e5fc 100%);
+  min-height: 100vh;
+  color: var(--text);
+}
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+/* ═══════════ HEADER ═══════════ */
+.site-header {
+  background: linear-gradient(90deg, var(--pri) 0%, #1565c0 60%, #00acc1 100%);
+  color: #fff;
+  padding: 22px 40px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-header .logo { font-size: 2.8rem; }
+.site-header h1   { font-size: 1.65rem; font-weight: 700; line-height: 1.2; }
+.site-header p    { font-size: 0.88rem; opacity: 0.85; margin-top: 2px; }
+.header-right { margin-left: auto; text-align: right; }
+.header-right .comp-name {
+  font-size: 1.05rem; font-weight: 600;
+  background: rgba(255,255,255,0.18);
+  border-radius: 20px; padding: 5px 16px;
+  display: inline-block;
+}
+
+/* ═══════════ WRAPPER ═══════════ */
+.wrapper {
+  max-width: 1060px;
+  margin: 36px auto;
+  padding: 0 20px 60px;
+}
+
+/* ═══════════ CARD ═══════════ */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.card-header {
+  background: linear-gradient(90deg, var(--pri) 0%, var(--pri-light) 100%);
+  color: #fff;
+  padding: 16px 24px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-body { padding: 26px 28px; }
+
+/* ═══════════ LOGIN SECTION ═══════════ */
+#login-section .card-body { max-width: 420px; margin: 0 auto; }
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.93rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: border .2s, box-shadow .2s;
+  background: #f8fbff;
+  color: var(--text);
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--pri-glow);
+  box-shadow: 0 0 0 3px rgba(66,165,245,0.18);
+}
+
+/* ═══════════ BUTTONS ═══════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 22px;
+  border: none; border-radius: var(--radius-sm);
+  font-size: 0.95rem; font-weight: 600; cursor: pointer;
+  transition: transform .1s, box-shadow .15s, opacity .15s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary  { background: var(--pri);     color: #fff; box-shadow: 0 2px 10px rgba(13,71,161,.3); }
+.btn-success  { background: var(--success); color: #fff; box-shadow: 0 2px 10px rgba(46,125,50,.3); }
+.btn-danger   { background: var(--error);   color: #fff; }
+.btn-accent   { background: var(--accent);  color: #fff; box-shadow: 0 2px 10px rgba(0,188,212,.25); }
+.btn-warn     { background: var(--warn);    color: #fff; }
+.btn-sm { padding: 6px 14px; font-size: 0.84rem; }
+.btn:hover { opacity: .88; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ═══════════ FORM ĐĂNG KÝ ═══════════ */
+#form-section { display: none; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px 20px;
+}
+.form-grid .form-group { margin-bottom: 0; }
+.form-grid .full { grid-column: 1 / -1; }
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23546e7a'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 34px;
+}
+
+/* ═══════════ BẢNG VĐV ═══════════ */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+thead tr {
+  background: linear-gradient(90deg, var(--pri) 0%, var(--pri-light) 100%);
+  color: #fff;
+}
+thead th {
+  padding: 11px 12px;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+}
+tbody tr:nth-child(odd)  { background: var(--row-odd);  }
+tbody tr:nth-child(even) { background: var(--row-even); }
+tbody tr:hover { background: #d1ecf8; }
+tbody td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 10px; border-radius: 20px;
+  font-size: 0.78rem; font-weight: 700;
+}
+.badge-quyen    { background: #e3f2fd; color: #0d47a1; }
+.badge-doikhang { background: #fff3e0; color: #e65100; }
+.badge-nam      { background: #e8f5e9; color: #1b5e20; }
+.badge-nu       { background: #fce4ec; color: #880e4f; }
+
+/* ═══════════ TOOLBAR ═══════════ */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 20px;
+  background: #f5f9ff;
+  border-bottom: 1px solid var(--border);
+}
+.toolbar-right { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.counter-badge {
+  background: var(--pri); color: #fff;
+  border-radius: 20px; padding: 4px 14px;
+  font-size: 0.85rem; font-weight: 700;
+}
+
+/* ═══════════ USER INFO BAR ═══════════ */
+#user-bar {
+  display: none;
+  background: linear-gradient(90deg,#e8f5e9,#f0faf0);
+  border: 1.5px solid #a5d6a7;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  margin-bottom: 16px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.94rem;
+  color: var(--success);
+  font-weight: 600;
+}
+#user-bar .logout-btn { margin-left: auto; }
+
+/* ═══════════ TOAST / ALERT ═══════════ */
+.toast-container {
+  position: fixed; top: 20px; right: 24px; z-index: 9999;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.toast {
+  min-width: 280px; max-width: 380px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  color: #fff; font-weight: 600; font-size: 0.9rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,.2);
+  animation: slideIn .3s ease;
+  display: flex; align-items: center; gap: 10px;
+}
+.toast.success { background: var(--success); }
+.toast.error   { background: var(--error);   }
+.toast.warn    { background: var(--warn);     }
+@keyframes slideIn {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ═══════════ SPINNER ═══════════ */
+.spinner {
+  width: 20px; height: 20px;
+  border: 3px solid rgba(255,255,255,.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ═══════════ EMPTY STATE ═══════════ */
+.empty-state {
+  text-align: center; padding: 48px 20px;
+  color: var(--muted); font-size: 1.05rem;
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+
+/* ═══════════ CONFIRM ROW DELETE ═══════════ */
+.del-btn { background: none; border: none; cursor: pointer; color: #e53935; font-size: 1rem; }
+.del-btn:hover { color: #b71c1c; }
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 600px) {
+  .site-header { padding: 14px 16px; }
+  .site-header h1 { font-size: 1.2rem; }
+  .card-body { padding: 16px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
+<body>
 
-<body class="bg-slate-50 text-slate-900">
+<!-- ── TOAST CONTAINER ───────────────────────────────────── -->
+<div class="toast-container" id="toastContainer"></div>
 
-<!-- HERO -->
-<header class="relative overflow-hidden bg-blue-900 text-white py-24 px-6">
-  <div class="max-w-4xl mx-auto text-center">
-    <span class="inline-block px-4 py-1.5 rounded-full bg-blue-800 text-sm mb-6">
-      🎓 Dành cho học sinh THPT
-    </span>
-
-    <h1 class="text-4xl font-bold mb-4">
-      Lộ trình định hướng nghề nghiệp
-    </h1>
-
-    <p class="text-lg text-blue-200">
-      Từng bước khám phá – trải nghiệm – định hình – chinh phục
-    </p>
+<!-- ══════════ HEADER ════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="logo">🥋</div>
+  <div>
+    <h1>ĐĂNG KÝ THI ĐẤU VOVINAM</h1>
+    <p>Hệ thống đăng ký VĐV trực tuyến dành cho các đoàn / đơn vị</p>
+  </div>
+  <div class="header-right">
+    <span class="comp-name" id="headerCompName">⏳ Đang tải…</span>
   </div>
 </header>
 
-<!-- TIMELINE -->
-<section class="max-w-5xl mx-auto py-16 px-6 space-y-10">
+<div class="wrapper">
 
-  <!-- LỚP 9 -->
-  <div class="bg-white p-6 rounded-xl shadow">
-    <h2 class="text-xl font-bold text-blue-600">Lớp 9: Khám phá bản thân</h2>
-    <p class="text-gray-500 italic">Self-discovery is the beginning of wisdom.</p>
-    <ul class="list-disc ml-5 mt-4 space-y-2">
-      <li>Trắc nghiệm MBTI/Holland</li>
-      <li>Tham gia CLB</li>
-      <li>Định hướng môn học</li>
-    </ul>
+  <!-- ═══ USER BAR ═══════════════════════════════════════════ -->
+  <div id="user-bar">
+    <span>✅ Đã đăng nhập:</span>
+    <strong id="userDonviName">—</strong>
+    <button class="btn btn-sm btn-danger logout-btn" onclick="doLogout()">🔓 Đăng xuất</button>
   </div>
 
-  <!-- LỚP 10 -->
-  <div class="bg-white p-6 rounded-xl shadow">
-    <h2 class="text-xl font-bold text-green-600">Lớp 10: Trải nghiệm</h2>
-    <p class="text-gray-500 italic">Learning by doing</p>
-    <ul class="list-disc ml-5 mt-4 space-y-2">
-      <li>Dự án cá nhân</li>
-      <li>Job shadowing</li>
-      <li>Portfolio</li>
-    </ul>
-  </div>
+  <!-- ═══ LOGIN SECTION ════════════════════════════════════ -->
+  <section id="login-section">
+    <div class="card">
+      <div class="card-header">🔐 Đăng nhập đơn vị</div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="loginUser">Tên đăng nhập (đơn vị)</label>
+          <input id="loginUser" class="form-control" type="text"
+                 placeholder="Ví dụ: DONVI_A" autocomplete="username"/>
+        </div>
+        <div class="form-group">
+          <label for="loginPass">Mật khẩu</label>
+          <input id="loginPass" class="form-control" type="password"
+                 placeholder="Nhập mật khẩu" autocomplete="current-password"
+                 onkeydown="if(event.key==='Enter')doLogin()"/>
+        </div>
+        <button class="btn btn-primary" onclick="doLogin()" style="width:100%;justify-content:center">
+          🔑 Đăng nhập
+        </button>
+        <p id="loginError" style="color:var(--error);margin-top:10px;display:none;font-size:.9rem"></p>
+      </div>
+    </div>
+  </section>
 
-  <!-- LỚP 11 -->
-  <div class="bg-white p-6 rounded-xl shadow">
-    <h2 class="text-xl font-bold text-orange-500">Lớp 11: Định hình</h2>
-    <p class="text-gray-500 italic">Academic foundation</p>
-    <ul class="list-disc ml-5 mt-4 space-y-2">
-      <li>IELTS / SAT</li>
-      <li>Summer school</li>
-      <li>Viết luận</li>
-    </ul>
-  </div>
+  <!-- ═══ FORM SECTION (hiện sau khi đăng nhập) ════════════ -->
+  <section id="form-section">
 
-  <!-- LỚP 12 -->
-  <div class="bg-white p-6 rounded-xl shadow">
-    <h2 class="text-xl font-bold text-red-500">Lớp 12: Về đích</h2>
-    <p class="text-gray-500 italic">Reach the world</p>
-    <ul class="list-disc ml-5 mt-4 space-y-2">
-      <li>Nộp hồ sơ đại học</li>
-      <li>Phỏng vấn học bổng</li>
-      <li>Kỹ năng sống</li>
-    </ul>
-  </div>
-
-</section>
-
-<!-- ADVISOR -->
-<section class="bg-white py-16">
-  <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-6">
-
-    <div class="p-6 border rounded-xl text-center">
-      <h3 class="font-bold text-lg mb-2">Định hướng</h3>
-      <p class="text-gray-600">Hiểu bản thân & chọn đúng ngành</p>
+    <!-- PHẦN NHẬP VĐV -->
+    <div class="card">
+      <div class="card-header">➕ Nhập thông tin VĐV đăng ký</div>
+      <div class="card-body">
+        <form id="vdvForm" onsubmit="addVDV(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Họ và tên VĐV *</label>
+              <input id="f_hoten" class="form-control" type="text"
+                     placeholder="Nguyễn Văn A" required/>
+            </div>
+            <div class="form-group">
+              <label>Năm sinh</label>
+              <input id="f_namsinh" class="form-control" type="number"
+                     placeholder="2005" min="1950" max="2020"/>
+            </div>
+            <div class="form-group">
+              <label>Đơn vị</label>
+              <input id="f_donvi" class="form-control" type="text"
+                     placeholder="Tự điền hoặc lấy từ tài khoản" readonly/>
+            </div>
+            <div class="form-group">
+              <label>Giới tính</label>
+              <select id="f_gioitinh" class="form-control">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Thể loại thi</label>
+              <select id="f_theloai" class="form-control" onchange="updateNoidung()">
+                <option value="Quyền">Quyền</option>
+                <option value="Đối kháng">Đối kháng</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nội dung thi</label>
+              <select id="f_noidung" class="form-control"></select>
+            </div>
+            <div class="form-group">
+              <label>Nhóm tuổi</label>
+              <select id="f_nhomtuoi" class="form-control">
+                <option value="N1">N1 (Thiếu nhi)</option>
+                <option value="N2">N2 (Thiếu niên)</option>
+                <option value="N3">N3 (Thanh niên)</option>
+                <option value="N4">N4 (Trưởng thành)</option>
+                <option value="N5">N5 (Cựu chiến binh)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Giải đấu</label>
+              <input id="f_giaidau" class="form-control" type="text"
+                     placeholder="Tên giải đấu" readonly/>
+            </div>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-success">✅ Thêm VĐV vào danh sách</button>
+            <button type="button" class="btn btn-accent" onclick="clearForm()">🔄 Làm mới</button>
+          </div>
+        </form>
+      </div>
     </div>
 
-    <div class="p-6 border rounded-xl text-center">
-      <h3 class="font-bold text-lg mb-2">Kỹ năng</h3>
-      <p class="text-gray-600">Phát triển kỹ năng mềm & học thuật</p>
+    <!-- DANH SÁCH VĐV ĐÃ NHẬP -->
+    <div class="card">
+      <div class="toolbar">
+        <span style="font-weight:700;color:var(--pri);font-size:1rem">📋 Danh sách VĐV đã nhập</span>
+        <span class="counter-badge" id="counterBadge">0 VĐV</span>
+        <div class="toolbar-right">
+          <button class="btn btn-danger btn-sm" onclick="clearAll()">🗑 Xóa tất cả</button>
+          <button class="btn btn-primary btn-sm" onclick="sendToServer()" id="sendBtn">
+            📤 Gửi đăng ký lên hệ thống
+          </button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="vdvTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Họ tên</th>
+              <th>Năm sinh</th>
+              <th>Đơn vị</th>
+              <th>Giới tính</th>
+              <th>Thể loại</th>
+              <th>Nội dung thi</th>
+              <th>Nhóm tuổi</th>
+              <th>Giải đấu</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody id="vdvBody">
+            <tr>
+              <td colspan="10">
+                <div class="empty-state">
+                  <div class="icon">👤</div>
+                  Chưa có VĐV nào. Điền form bên trên rồi nhấn "Thêm VĐV".
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="p-6 border rounded-xl text-center">
-      <h3 class="font-bold text-lg mb-2">Cơ hội</h3>
-      <p class="text-gray-600">Tiếp cận học bổng & du học</p>
+    <!-- HƯỚNG DẪN -->
+    <div class="card">
+      <div class="card-header">📌 Hướng dẫn đăng ký</div>
+      <div class="card-body" style="color:var(--muted);line-height:1.8">
+        <ol style="padding-left:20px;font-size:.95rem">
+          <li>Điền đầy đủ thông tin VĐV và nhấn <strong>"Thêm VĐV vào danh sách"</strong>.</li>
+          <li>Kiểm tra lại danh sách. Có thể xóa từng dòng nếu sai.</li>
+          <li>Sau khi hoàn tất, nhấn <strong>"Gửi đăng ký lên hệ thống"</strong>.</li>
+          <li>Thông tin sẽ xuất hiện ngay trong Tab Đăng ký của phần mềm điều hành.</li>
+          <li>Mọi thắc mắc liên hệ ban tổ chức.</li>
+        </ol>
+      </div>
     </div>
 
-  </div>
-</section>
+  </section><!-- end #form-section -->
 
+</div><!-- end .wrapper -->
+
+<script>
+// ══════════════════════════════════════════════════════════
+//  CẤU HÌNH – tự động phát hiện host từ URL hiện tại
+// ══════════════════════════════════════════════════════════
+const SERVER_HOST = window.location.hostname || "127.0.0.1";
+const SERVER_PORT = 5005;  // Phải khớp với port Flask (app.run port)
+const BASE_URL    = `http://${SERVER_HOST}:${SERVER_PORT}`;
+
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+let authToken    = sessionStorage.getItem("dk_token")   || "";
+let authDonvi    = sessionStorage.getItem("dk_donvi")   || "";
+let vdvList      = [];  // local list before submit
+let serverData   = { noidung_quyen: [], noidung_doikhang: [], competition_name: "" };
+
+// ══════════════════════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════════════════════
+function showToast(msg, type="success", duration=3500) {
+  const c = document.getElementById("toastContainer");
+  const t = document.createElement("div");
+  const icon = type==="success"?"✅":type==="error"?"❌":"⚠️";
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity="0"; t.style.transform="translateX(110%)"; t.style.transition=".4s"; setTimeout(()=>t.remove(),400); }, duration);
+}
+
+// ══════════════════════════════════════════════════════════
+//  KHỞI TẠO: tải dữ liệu từ server
+// ══════════════════════════════════════════════════════════
+async function loadServerData() {
+  try {
+    const res = await fetch(`${BASE_URL}/dangky_data`);
+    if (res.ok) {
+      serverData = await res.json();
+      document.getElementById("headerCompName").textContent =
+        serverData.competition_name || "Giải đấu Vovinam";
+      document.getElementById("f_giaidau").value = serverData.competition_name || "";
+      updateNoidung();
+    }
+  } catch(e) {
+    document.getElementById("headerCompName").textContent = "Giải đấu Vovinam";
+    console.warn("Không kết nối server – chạy offline mode:", e);
+    // Dùng dữ liệu mặc định
+    serverData.noidung_quyen    = ["Vovinam 1","Vovinam 2","Vovinam 3","Tứ trụ quyền","Long hổ quyền","Song luyện tay không"];
+    serverData.noidung_doikhang = ["Võ đài tự do nam","Võ đài tự do nữ","Võ đài đối kháng nam","Võ đài đối kháng nữ"];
+    updateNoidung();
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+//  ĐĂNG NHẬP / ĐĂNG XUẤT
+// ══════════════════════════════════════════════════════════
+async function doLogin() {
+  const user = document.getElementById("loginUser").value.trim();
+  const pass = document.getElementById("loginPass").value.trim();
+  const errEl = document.getElementById("loginError");
+  errEl.style.display = "none";
+
+  if (!user || !pass) { errEl.textContent="Vui lòng nhập đủ thông tin."; errEl.style.display="block"; return; }
+
+  try {
+    const res = await fetch(`${BASE_URL}/dangky_login`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({username:user, password:pass})
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      authToken = data.token;
+      authDonvi = data.donvi;
+      sessionStorage.setItem("dk_token", authToken);
+      sessionStorage.setItem("dk_donvi", authDonvi);
+      afterLogin();
+    } else {
+      errEl.textContent = data.message || "Sai tên đăng nhập hoặc mật khẩu!";
+      errEl.style.display = "block";
+    }
+  } catch(e) {
+    errEl.textContent = `Không kết nối được máy chủ tại ${BASE_URL}. Kiểm tra phần mềm có đang chạy không.`;
+    errEl.style.display = "block";
+  }
+}
+
+function afterLogin() {
+  document.getElementById("login-section").style.display  = "none";
+  document.getElementById("form-section").style.display   = "block";
+  const bar = document.getElementById("user-bar");
+  bar.style.display = "flex";
+  document.getElementById("userDonviName").textContent = authDonvi;
+  document.getElementById("f_donvi").value = authDonvi;
+  showToast(`Đăng nhập thành công! Chào ${authDonvi} 👋`);
+}
+
+function doLogout() {
+  authToken = ""; authDonvi = "";
+  sessionStorage.removeItem("dk_token");
+  sessionStorage.removeItem("dk_donvi");
+  document.getElementById("login-section").style.display = "block";
+  document.getElementById("form-section").style.display  = "none";
+  document.getElementById("user-bar").style.display      = "none";
+  showToast("Đã đăng xuất!", "warn");
+}
+
+// Nếu đã có token trong sessionStorage thì bỏ qua màn hình login
+window.addEventListener("DOMContentLoaded", async () => {
+  await loadServerData();
+  if (authToken && authDonvi) {
+    afterLogin();
+  }
+});
+
+// ══════════════════════════════════════════════════════════
+//  CẬP NHẬT NỘI DUNG THI THEO THỂ LOẠI
+// ══════════════════════════════════════════════════════════
+function updateNoidung() {
+  const tl = document.getElementById("f_theloai").value;
+  const sel = document.getElementById("f_noidung");
+  const items = tl === "Quyền"
+    ? (serverData.noidung_quyen    || ["Vovinam 1","Vovinam 2"])
+    : (serverData.noidung_doikhang || ["Võ đài nam","Võ đài nữ"]);
+  sel.innerHTML = items.map(v=>`<option value="${v}">${v}</option>`).join("");
+}
+
+// ══════════════════════════════════════════════════════════
+//  THÊM VĐV
+// ══════════════════════════════════════════════════════════
+function addVDV(e) {
+  e.preventDefault();
+  const hoten = document.getElementById("f_hoten").value.trim();
+  if (!hoten) { showToast("Vui lòng nhập họ tên VĐV!", "error"); return; }
+
+  const rec = {
+    Hoten:    hoten,
+    Namsinh:  document.getElementById("f_namsinh").value.trim(),
+    Donvi:    document.getElementById("f_donvi").value.trim() || authDonvi,
+    Gioitinh: document.getElementById("f_gioitinh").value,
+    Theloai:  document.getElementById("f_theloai").value,
+    Noidung:  document.getElementById("f_noidung").value,
+    Nhomtuoi: document.getElementById("f_nhomtuoi").value,
+    Giai_dau: document.getElementById("f_giaidau").value.trim(),
+  };
+  vdvList.push(rec);
+  renderTable();
+  document.getElementById("f_hoten").value    = "";
+  document.getElementById("f_namsinh").value  = "";
+  document.getElementById("f_hoten").focus();
+  showToast(`Đã thêm: ${hoten}`);
+}
+
+// ══════════════════════════════════════════════════════════
+//  RENDER BẢNG
+// ══════════════════════════════════════════════════════════
+function renderTable() {
+  const tbody = document.getElementById("vdvBody");
+  document.getElementById("counterBadge").textContent = `${vdvList.length} VĐV`;
+
+  if (!vdvList.length) {
+    tbody.innerHTML = `<tr><td colspan="10"><div class="empty-state"><div class="icon">👤</div>Chưa có VĐV nào.</div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = vdvList.map((r,i) => {
+    const tlBadge = r.Theloai==="Quyền"
+      ? `<span class="badge badge-quyen">🥋 Quyền</span>`
+      : `<span class="badge badge-doikhang">⚔️ Đối kháng</span>`;
+    const gBadge = r.Gioitinh==="Nữ"
+      ? `<span class="badge badge-nu">Nữ</span>`
+      : `<span class="badge badge-nam">Nam</span>`;
+    return `<tr>
+      <td style="text-align:center">${i+1}</td>
+      <td><strong>${esc(r.Hoten)}</strong></td>
+      <td style="text-align:center">${esc(r.Namsinh)}</td>
+      <td>${esc(r.Donvi)}</td>
+      <td style="text-align:center">${gBadge}</td>
+      <td style="text-align:center">${tlBadge}</td>
+      <td>${esc(r.Noidung)}</td>
+      <td style="text-align:center">${esc(r.Nhomtuoi)}</td>
+      <td>${esc(r.Giai_dau)}</td>
+      <td style="text-align:center">
+        <button class="del-btn" onclick="deleteRow(${i})" title="Xóa">🗑</button>
+      </td>
+    </tr>`;
+  }).join("");
+}
+
+function esc(s) {
+  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function deleteRow(idx) {
+  vdvList.splice(idx,1);
+  renderTable();
+}
+
+function clearForm() {
+  document.getElementById("vdvForm").reset();
+  document.getElementById("f_donvi").value  = authDonvi;
+  document.getElementById("f_giaidau").value= serverData.competition_name||"";
+  updateNoidung();
+}
+
+function clearAll() {
+  if (!vdvList.length) return;
+  if (!confirm(`Xóa toàn bộ ${vdvList.length} VĐV khỏi danh sách?`)) return;
+  vdvList = [];
+  renderTable();
+  showToast("Đã xóa toàn bộ danh sách.", "warn");
+}
+
+// ══════════════════════════════════════════════════════════
+//  GỬI LÊN SERVER
+// ══════════════════════════════════════════════════════════
+async function sendToServer() {
+  if (!authToken) { showToast("Vui lòng đăng nhập trước!", "error"); return; }
+  if (!vdvList.length) { showToast("Chưa có VĐV nào trong danh sách!", "warn"); return; }
+
+  const btn = document.getElementById("sendBtn");
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span> Đang gửi…`;
+
+  try {
+    const res = await fetch(`${BASE_URL}/dangky_submit`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ token: authToken, records: vdvList })
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      showToast(`✅ ${data.message}. Gửi thành công ${data.added?.length||vdvList.length} VĐV!`);
+      vdvList = [];
+      renderTable();
+    } else if (res.status === 401) {
+      showToast("Phiên đăng nhập hết hạn! Vui lòng đăng nhập lại.", "error", 5000);
+      doLogout();
+    } else {
+      showToast(data.message || "Có lỗi xảy ra khi gửi!", "error");
+    }
+  } catch(e) {
+    showToast("Không kết nối được máy chủ. Kiểm tra IP và đảm bảo phần mềm đang chạy.", "error", 6000);
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = "📤 Gửi đăng ký lên hệ thống";
+  }
+}
+
+// Nhấn Enter ở login pass
+document.addEventListener("keydown", e => {
+  if (e.key==="Enter" && document.getElementById("login-section").style.display!=="none") doLogin();
+});
+</script>
 </body>
 </html>
